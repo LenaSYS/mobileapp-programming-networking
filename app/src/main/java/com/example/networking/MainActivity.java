@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     private Mountain[] mountains;
     private WebView webView;
-    ArrayAdapter<Mountain> adapter;
+
     private ListView listView;
 
     private final String JSON_URL = "HTTPS_URL_TO_JSON_DATA_CHANGE_THIS_URL";
@@ -35,31 +35,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonFile(this, this).execute(JSON_FILE);
 
-        webView = findViewById(R.id.web_view);
-        webView.setWebViewClient(new WebViewClient());
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
-
-        try {
-
-
-            adapter = new ArrayAdapter<Mountain>(MainActivity.this,R.layout.item);
-            ListView listView = findViewById(R.id.list_view);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                }
-            });
 
 
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
+
 
 
     }
@@ -70,21 +52,25 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         Gson gson = new Gson();
         mountains = gson.fromJson(json,Mountain[].class);
-        adapter = new ArrayAdapter<Mountain>(MainActivity.this,R.layout.item,mountains);
 
+        ArrayAdapter<Mountain> arrayAdapter = new ArrayAdapter<>(this, R.layout.listview_item, R.id.item, mountains);
 
+        ListView listView = findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
 
         for (int i = 0; i < mountains.length; i++) {
             Log.d("MainActivity ==>","Hittade ett berg" +  mountains[i].getName() + " " + mountains[i].getAuxdata().getWiki());
 
 
+
         }
-        
+
 
 
 
 
     }
+
 
 
 
