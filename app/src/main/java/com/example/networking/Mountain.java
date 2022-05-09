@@ -56,5 +56,5 @@ public class Mountain {
     }
 
     @Override
-    public String toString(){return name + auxdata;}
+    public String toString(){return name;}
 }
