@@ -32,11 +32,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         new JsonFile(this, this).execute(JSON_FILE);
 
 
-
-
-
-
-
     }
 
     @Override
@@ -53,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         for (int i = 0; i < mountains.length; i++) {
             Log.d("MainActivity ==>","Hittade ett berg" +  mountains[i].getName() + " " + mountains[i].getAuxdata().getWiki());
-
 
 
         }
