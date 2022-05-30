@@ -1,7 +1,35 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+**
+fösta jag adderat en listview layout för att läsa jason item. jag adderat också Mountain,java jag användar varible namn
+Till exempel Berg namn  och storleksfälten meter och fot över havet i bergsexemplet. Sen jag användar daptern för att tillhandahålla vyer för en AdapterView, Returnerar en vy för varje objekt i en samling dataobjekt du tillhandahåller och kan användas med listbaserade användargränssnittswidgets.
+
+```
+Gson gson = new Gson();
+mountains = gson.fromJson(json,Mountain[].class);
+```
+
+Den här element hälpt mig användas för att konvertera Java-objekt till deras JSON-representation. Den kan också användas för att konvertera en JSON-sträng till ett likvärdigt Java-objekt. Gson kan arbeta med godtyckliga Java-objekt inklusive objekt som du inte har källan till.
+
+```
+ArrayAdapter<Mountain> arrayAdapter = new ArrayAdapter<>(this, R.layout.listview_item, R.id.item, mountains);
+
+```
+En adapter som hjälpte mig  fungerar som en brygga mellan en AdapterView och de underliggande data för den view.
+```
+ ListView listView = findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
+```
+Den här hur jag koppla mellen ListView och adapter.
+**
 
 _Du kan ta bort all text som finns sedan tidigare_.
 
@@ -16,24 +44,31 @@ _Du kan ta bort all text som finns sedan tidigare_.
 Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+  Gson gson = new Gson();
+        mountains = gson.fromJson(json,Mountain[].class);
+
+        ArrayAdapter<Mountain> arrayAdapter = new ArrayAdapter<>(this, R.layout.listview_item, R.id.item, mountains);
+
+        ListView listView = findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
+        for (int i = 0; i < mountains.length; i++) {
+            Log.d("MainActivity ==>","Hittade ett berg" +  mountains[i].getName() + " " + mountains[i].getAuxdata().getWiki());
+
+
+
+        }
 ```
 
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](pic1.png)
 
 Läs gärna:
 
